@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="Calculator" Height="450" Width="800">
     <Grid>
-        <TextBlock>Hello, this is Coltons Calculator Application :)</TextBlock>
+        <StackPanel>
+            <Label/>
+            <TextBox/>
+            <TextBox/>
+            <Button/>
+        </StackPanel>
     </Grid>
 </Window>
