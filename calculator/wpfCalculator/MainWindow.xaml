@@ -5,19 +5,114 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpfCalculator"
         mc:Ignorable="d"
-        Title="Calculator" Height="450" Width="800">
-    <Grid>
-        <StackPanel VerticalAlignment="Center"
-                    Margin="10">
-            <Label Content="Result:"
-                   Margin="0,0,0,10"/>
-            <TextBox Text="0"
-                     Margin="0,0,0,10"/>
-            <TextBox Text="0"
-                     Margin="0,0,0,10"/>
-            <Button Content="Calculate"
-                    Background="DodgerBlue"
-                    Foreground="White"/>
-        </StackPanel>
+        Title="Calculator" Height="525" Width="300">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="resultLabel"  Content="0"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Bottom"
+               FontSize="55"
+               Grid.ColumnSpan="4"/>
+        <Button x:Name="clearAll" Content="AC"
+                Margin="5"
+                Grid.Row="1"/>
+        <Button x:Name="changeSign" Content="+/-"
+                Margin="5"
+                Grid.Column="1"
+                Grid.Row="1"/>
+        <Button x:Name="percentage" Content="%" 
+                Margin="5"
+                Grid.Column="2"
+                Grid.Row="1"/>
+        <Button x:Name="divide" Content="/" 
+                Click="Operator_Click"
+                Margin="5"
+                Grid.Column="3"
+                Grid.Row="1"/>
+        <Button x:Name="seven" Content="7"
+                Margin="5"
+                Grid.Row="2"
+                Click="Number_Click"/>
+        <Button x:Name="eight" 
+                Content="8"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Column="1"
+                Grid.Row="2"/>
+        <Button x:Name="nine" Content="9"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Column="2"
+                Grid.Row="2"/>
+        <Button x:Name="multiply" Content="*"
+                Click="Operator_Click"
+                Margin="5"
+                Grid.Column="3"
+                Grid.Row="2"/>
+        <Button x:Name="four" Content="4"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Row="3"/>
+        <Button x:Name="five" Content="5"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Column="1"
+                Grid.Row="3"/>
+        <Button x:Name="six" Content="6"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Column="2"
+                Grid.Row="3"/>
+        <Button x:Name="subtract" Content="-"
+                Click="Operator_Click"
+                Margin="5"
+                Grid.Column="3"
+                Grid.Row="3"/>
+        <Button x:Name="one" Content="1"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Row="4"/>
+        <Button x:Name="two" Content="2"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Column="1"
+                Grid.Row="4"/>
+        <Button x:Name="three" Content="3"
+                Click="Number_Click"
+                Margin="5"
+                Grid.Column="2"
+                Grid.Row="4"/>
+        <Button x:Name="add" Content="+"
+                Click="Operator_Click"
+                Margin="5"
+                Grid.Column="3"
+                Grid.Row="4"/>
+        <Button x:Name="zero" Content="0"
+                Click="Number_Click"
+                Margin="5"
+                Grid.ColumnSpan="2"
+                Grid.Row="5"/>
+        <Button x:Name="period" Content="."
+                Click="Operator_Click"
+                Margin="5"
+                Grid.Column="2"
+                Grid.Row="5"/>
+        <Button x:Name="calculate" Content="="
+                Margin="5"
+                Grid.Column="3"
+                Grid.Row="5"/>
     </Grid>
 </Window>
