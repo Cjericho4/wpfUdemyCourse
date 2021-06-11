@@ -106,7 +106,7 @@
                 Grid.ColumnSpan="2"
                 Grid.Row="5"/>
         <Button x:Name="period" Content="."
-                Click="period_Click"
+                Click="Period_Click"
                 Margin="5"
                 Grid.Column="2"
                 Grid.Row="5"/>

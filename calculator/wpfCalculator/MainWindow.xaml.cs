@@ -30,13 +30,11 @@ namespace wpfCalculator
             changeSign.Click += ChangeSign_Click;
             percentage.Click += Percentage_Click;
             calculate.Click += Calculate_Click;
-        
         }
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
         {
-            double newNumber;
-            if(double.TryParse(resultLabel.Content.ToString(), out newNumber))
+            if (double.TryParse(resultLabel.Content.ToString(), out double newNumber))
             {
                 switch (selectedOperator)
                 {
@@ -59,10 +57,14 @@ namespace wpfCalculator
 
         private void Percentage_Click(object sender, RoutedEventArgs e)
         {
-            if(double.TryParse(resultLabel.Content.ToString(), out lastNumber))
+            if (double.TryParse(resultLabel.Content.ToString(), out double tempNum))
             {
-                lastNumber /= 100;
-                resultLabel.Content = lastNumber.ToString();
+                tempNum /= 100;
+                if (lastNumber != 0)
+                {
+                    tempNum *= lastNumber;
+                }
+                resultLabel.Content = tempNum.ToString();
             }
         }
 
@@ -106,7 +108,7 @@ namespace wpfCalculator
                 selectedOperator = SelectedOperator.Division;
         }
 
-        private void period_Click(object sender, RoutedEventArgs e)
+        private void Period_Click(object sender, RoutedEventArgs e)
         {
             if( !resultLabel.Content.ToString().Contains("."))
                 resultLabel.Content = $"{resultLabel.Content}.";
@@ -117,6 +119,8 @@ namespace wpfCalculator
             if(resultLabel.Content.ToString() != "0")
             {
                 resultLabel.Content = "0";
+                result = 0;
+                lastNumber = 0;
             }
         }
     }
