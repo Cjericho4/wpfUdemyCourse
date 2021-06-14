@@ -26,10 +26,6 @@ namespace wpfCalculator
         {
             //Start the Window
             InitializeComponent();
-            clearAll.Click += ClearAll_Click;
-            changeSign.Click += ChangeSign_Click;
-            percentage.Click += Percentage_Click;
-            calculate.Click += Calculate_Click;
         }
 
         private void Calculate_Click(object sender, RoutedEventArgs e)
@@ -51,8 +47,8 @@ namespace wpfCalculator
                         result = SimpleMath.Subtract(lastNumber, newNumber);
                         break;
                 }
-                resultLabel.Content = result.ToString();
             }
+            resultLabel.Content = result.ToString();
         }
 
         private void Percentage_Click(object sender, RoutedEventArgs e)
