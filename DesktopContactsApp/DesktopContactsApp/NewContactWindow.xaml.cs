@@ -10,25 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DesktopContactsApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for NewContactWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NewContactWindow : Window
     {
-        public MainWindow()
+        public NewContactWindow()
         {
             InitializeComponent();
         }
 
-        private void NewContactWindow_Click(object sender, RoutedEventArgs e)
+        private void SaveContact_Click(object sender, RoutedEventArgs e)
         {
-            NewContactWindow newContact = new NewContactWindow();
-            newContact.ShowDialog();
+            //Save the contact
+
+            //Close the window
+            Close();
         }
     }
 }
