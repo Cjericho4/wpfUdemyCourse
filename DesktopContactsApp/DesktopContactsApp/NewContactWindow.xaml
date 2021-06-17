@@ -8,8 +8,10 @@
         Title="NewContactWindow" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="10">
+            <Label Content="Name:"/>
             <TextBox x:Name="nameTextBox" 
                      Margin="0,0,0,5" />
+            <Label Content="Email:"/>
             <TextBox x:Name="emailTextBox" 
                      Margin="0,0,0,5" />
             <TextBox x:Name="phoneTextBox" 
