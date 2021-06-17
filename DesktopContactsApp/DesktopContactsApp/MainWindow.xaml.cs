@@ -1,19 +1,8 @@
-﻿using System;
+﻿using DesktopContactsApp.Classes;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SQLite;
-using DesktopContactsApp.Classes;
 
 namespace DesktopContactsApp
 {
@@ -22,31 +11,43 @@ namespace DesktopContactsApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Contact> contacts;
         public MainWindow()
         {
             InitializeComponent();
+            contacts = new List<Contact>();
             ReadDatabase();
+
         }
 
         void ReadDatabase()
         {
-            var contacts = connection.Table<Contact>().ToList();
             using (SQLite.SQLiteConnection connection = new(App.databasePath))
             {
                 connection.CreateTable<Contact>();
-                
+                //Orders list alphabetically
+                contacts = connection.Table<Contact>().ToList().OrderBy(c => c.Name).ToList();
+            }
+            if (contacts != null)
+            {
+                ContactListView.ItemsSource = contacts;
             }
         }
 
         private void NewContactWindow_Click(object sender, RoutedEventArgs e)
         {
             //Adds new contact to the database
-            NewContactWindow newContact = new NewContactWindow();
+            NewContactWindow newContact = new();
             newContact.ShowDialog();
             //Update the contact list with just created contact.
             ReadDatabase();
         }
 
-
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox searchText = sender as TextBox;
+            var filteredList = contacts.Where(c => c.Name.ToLower().Contains(searchText.Text.ToLower())).ToList();
+            ContactListView.ItemsSource = filteredList;
+        }
     }
 }

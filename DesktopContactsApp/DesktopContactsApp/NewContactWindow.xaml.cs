@@ -31,7 +31,7 @@ namespace DesktopContactsApp
             if (nameTextBox.Text != "")
             {
                 //TODO: Save the Contact
-                Contact contact = new Contact()
+                Contact contact = new()
                 {
                     Name = nameTextBox.Text,
                     Email = emailTextBox.Text,
