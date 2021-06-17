@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DesktopContactsApp.Classes;
+using SQLite;
 
 namespace DesktopContactsApp
 {
@@ -26,10 +28,26 @@ namespace DesktopContactsApp
 
         private void SaveContact_Click(object sender, RoutedEventArgs e)
         {
-            //Save the contact
+            if (nameTextBox.Text != "")
+            {
+                //TODO: Save the Contact
+                Contact contact = new Contact()
+                {
+                    Name = nameTextBox.Text,
+                    Email = emailTextBox.Text,
+                    PhoneNumber = phoneTextBox.Text
+                };
+                
+                using (SQLiteConnection connection = new(App.databasePath))
+                {
+                    //Insert the contact into the table
+                    connection.CreateTable<Contact>();
+                    connection.Insert(contact);
+                }
 
-            //Close the window
-            Close();
+                //Close the window 
+                Close();
+            }
         }
     }
 }
