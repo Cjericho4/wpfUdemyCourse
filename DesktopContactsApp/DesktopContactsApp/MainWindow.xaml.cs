@@ -20,7 +20,7 @@ namespace DesktopContactsApp
 
         }
 
-        void ReadDatabase()
+        public void ReadDatabase()
         {
             using (SQLite.SQLiteConnection connection = new(App.databasePath))
             {
@@ -38,7 +38,7 @@ namespace DesktopContactsApp
         {
             //Adds new contact to the database
             NewContactWindow newContact = new();
-            newContact.ShowDialog();
+            _ = newContact.ShowDialog();
             //Update the contact list with just created contact.
             ReadDatabase();
         }
@@ -48,6 +48,17 @@ namespace DesktopContactsApp
             TextBox searchText = sender as TextBox;
             var filteredList = contacts.Where(c => c.Name.ToLower().Contains(searchText.Text.ToLower())).ToList();
             ContactListView.ItemsSource = filteredList;
+        }
+
+        private void ContactListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Contact selectedContact = (Contact)ContactListView.SelectedItem;
+            if(selectedContact != null)
+            {
+                ContactWindow contactWindow = new(selectedContact);
+                _ = contactWindow.ShowDialog();
+            }
+            ReadDatabase();
         }
     }
 }
