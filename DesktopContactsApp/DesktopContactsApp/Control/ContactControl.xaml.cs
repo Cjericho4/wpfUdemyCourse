@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DesktopContactsApp.Classes;
 
 namespace DesktopContactsApp.Control
@@ -21,16 +10,37 @@ namespace DesktopContactsApp.Control
     /// </summary>
     public partial class ContactControl : UserControl
     {
-        private Contact contact;
+        //private Contact contact;
+
+        //public Contact Contact
+        //{
+        //    get { return contact; }
+        //    set { 
+        //        contact = value;
+        //        NameText.Text = contact.Name;
+        //        Email.Text = contact.Email;
+        //        PhoneNumber.Text = contact.PhoneNumber;
+        //    }
+        //}
 
         public Contact Contact
         {
-            get { return contact; }
-            set { 
-                contact = value;
-                Name.Text = contact.Name;
-                Email.Text = contact.Email;
-                PhoneNumber.Text = contact.PhoneNumber;
+            get => (Contact)GetValue(ContactProperty);
+            set => SetValue(ContactProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for Contact.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContactProperty =
+            DependencyProperty.Register("Contact", typeof(Contact), typeof(ContactControl), new PropertyMetadata(new Contact() { Name = "Name", Email = "example@example.com", PhoneNumber = "801-411-1111" }, SetText));
+
+        private static void SetText(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ContactControl control = d as ContactControl;
+            if(control!= null)
+            {
+                control.NameText.Text = (e.NewValue as Contact).Name;
+                control.Email.Text = (e.NewValue as Contact).Email;
+                control.PhoneNumber.Text = (e.NewValue as Contact).PhoneNumber;
             }
         }
 
