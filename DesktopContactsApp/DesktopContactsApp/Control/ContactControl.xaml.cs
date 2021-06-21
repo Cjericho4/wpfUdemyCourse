@@ -39,8 +39,8 @@ namespace DesktopContactsApp.Control
             if(control!= null)
             {
                 control.NameText.Text = (e.NewValue as Contact).Name;
-                control.Email.Text = (e.NewValue as Contact).Email;
-                control.PhoneNumber.Text = (e.NewValue as Contact).PhoneNumber;
+                //control.Email.Text = (e.NewValue as Contact).Email;
+                //control.PhoneNumber.Text = (e.NewValue as Contact).PhoneNumber;
             }
         }
 

@@ -11,12 +11,6 @@
             <TextBlock x:Name="NameText"
                        FontSize="20"
                        FontWeight="Bold"/>
-            <TextBlock x:Name="Email"
-                       FontSize="12"
-                       Foreground="DodgerBlue"/>
-            <TextBlock x:Name="PhoneNumber"
-                       FontSize="12"
-                       FontStyle="Italic"/>
         </StackPanel>
     </Grid>
 </UserControl>
