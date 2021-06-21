@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandmarkAI", "LandmarkAI.csproj", "{3F077B44-5DF4-4536-AB94-A7AAE0A4365F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F077B44-5DF4-4536-AB94-A7AAE0A4365F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F077B44-5DF4-4536-AB94-A7AAE0A4365F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F077B44-5DF4-4536-AB94-A7AAE0A4365F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F077B44-5DF4-4536-AB94-A7AAE0A4365F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9A83C1E-476E-4802-BA98-04DC8339E79C}
+	EndGlobalSection
+EndGlobal
