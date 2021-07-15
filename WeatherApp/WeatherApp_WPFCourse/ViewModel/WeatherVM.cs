@@ -42,8 +42,10 @@ namespace WeatherApp_WPFCourse.ViewModel
         {
             get { return selectedCity; }
             set { selectedCity = value;
-                OnPropertyChanged("SelectedCity");
-                GetCurrentConditions();
+                if(selectedCity != null){
+                    OnPropertyChanged("SelectedCity");
+                    GetCurrentConditions();
+                }
             }
         }
 
@@ -88,7 +90,7 @@ namespace WeatherApp_WPFCourse.ViewModel
                     {
                         Imperial = new Units
                         {
-                            Value = 92
+                            Value = "92"
                         }
                     }
                 };

@@ -25,7 +25,7 @@
                     CommandParameter="{Binding Query}"
                     />
             <ListView ItemsSource="{Binding Cities}"
-                      SelectedItem="{Binding SelectedCity, Mode=TwoWay}">
+                      SelectedValue="{Binding SelectedCity}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
