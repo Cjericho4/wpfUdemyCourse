@@ -42,8 +42,16 @@ namespace WeatherApp_WPFCourse.ViewModel
         {
             get { return selectedCity; }
             set { selectedCity = value;
-                OnPropertyChanged("SelectedCity");    
+                OnPropertyChanged("SelectedCity");
+                GetCurrentConditions();
             }
+        }
+
+        private async void GetCurrentConditions()
+        {
+            Query = string.Empty;
+            Cities.Clear();
+            CurrentConditions = await AccuWeatherHelper.GetCurrentConditions(SelectedCity.Key);
         }
 
         //Event for when any properties change
