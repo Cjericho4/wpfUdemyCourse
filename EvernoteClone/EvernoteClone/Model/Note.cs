@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite;
 
 namespace EvernoteClone_.Model
 {
     public class Note
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        [Indexed]
         public int NotebookId { get; set; }
         public string Title { get; set; }
         public DateTime CreatedAt { get; set; }
