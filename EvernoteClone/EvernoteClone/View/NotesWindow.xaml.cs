@@ -28,5 +28,12 @@ namespace EvernoteClone.View
         {
             Application.Current.Shutdown();
         }
+
+        private void notepadContent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int charsWritten = new TextRange(notepadContent.Document.ContentStart, notepadContent.Document.ContentEnd).Text.Trim().Length;
+
+            StatusTextBlock.Text = $"Character written: {charsWritten}";
+        }
     }
 }

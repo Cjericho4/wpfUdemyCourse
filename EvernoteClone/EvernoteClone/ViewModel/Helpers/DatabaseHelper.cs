@@ -64,7 +64,7 @@ namespace EvernoteClone.ViewModel.Helpers
         }
 
         //Read information from the Database.
-        public static List<T> Read<T>(T item) where T: new()
+        public static List<T> Read<T>() where T : new()
         {
             List<T> items;
 
