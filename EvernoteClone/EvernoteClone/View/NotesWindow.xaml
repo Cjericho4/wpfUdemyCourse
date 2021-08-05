@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:EvernoteClone.ViewModel"
+        xmlns:uc="clr-namespace:EvernoteClone.View.UserControls"
         xmlns:local="clr-namespace:EvernoteClone.View"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="NotesWindow" Height="450" Width="800">
     <Window.Resources>
@@ -30,35 +32,72 @@
             </StatusBarItem>
         </StatusBar>
         <ListView DockPanel.Dock="Left"
+                  Background="MidnightBlue"
                   Width="140"
                   SelectedValue="{Binding SelectedNotebook, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   ItemsSource="{Binding Notebooks}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
+                    <Grid>
+                        <uc:NotebookUI Notebook="{Binding}">
+                            <uc:NotebookUI.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Rename"
+                                              Command="{Binding Source={StaticResource vm}, Path=editCommand}"/>
+                                </ContextMenu>
+                            </uc:NotebookUI.ContextMenu>
+                        </uc:NotebookUI>
+                        <TextBox Text="{Binding Name, Mode=TwoWay}"
+                                 Visibility="{Binding Source={StaticResource vm}, Path=IsVisible}"
+                                 Foreground="Black"
+                                 Background="Brown">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="LostFocus">
+                                    <i:InvokeCommandAction Command="{Binding Source={StaticResource vm}, Path=EndEditing}"
+                                                           CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <ListView DockPanel.Dock="Left"
                   Width="140"
-                  ItemsSource="{Binding Notes}">
+                  ItemsSource="{Binding Notes}"
+                  SelectedValue="{Binding SelectedNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Title}"/>
+                    <uc:NoteUI NoteUC="{Binding}">
+                        <ContextMenu>
+                            <MenuItem Header="Rename"/>
+                        </ContextMenu>
+                    </uc:NoteUI>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <ToolBar DockPanel.Dock="Top" Background="White">
-            <Button Content="Speech"></Button>
-            <ToggleButton Content="B" 
+            <Button x:Name="SaveButton"
+                    Content="Save"
+                    Click="SaveButton_Click"></Button>
+            <ToggleButton x:Name="boldButton"
+                          Content="B" 
                           FontWeight="Bold"
-                          >
+                          Click="boldButton_Click">
                 
             </ToggleButton>
+            <ComboBox Name="FontFamilyComboBox"
+                      Width="100"
+                      SelectionChanged="FontFamilyComboBox_SelectionChanged"/>
+            <ComboBox Name="FontSizeComboBox"
+                      Width="50"
+                      IsEditable="True"
+                      TextBoxBase.TextChanged="FontSizeComboBox_TextChanged"/>
         </ToolBar>
         <Grid>
             <RichTextBox x:Name="notepadContent"
-                         TextChanged="notepadContent_TextChanged"/>
+                         TextChanged="notepadContent_TextChanged"
+                         SelectionChanged="NotepadContent_SelectionChanged"/>
         </Grid>
        
     </DockPanel>
